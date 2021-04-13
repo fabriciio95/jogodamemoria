@@ -1,5 +1,6 @@
 package br.com.memorygame.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.memorygame.constants.Constants;
@@ -52,8 +53,13 @@ public class Board {
 
 	public void putCardsOnTheBoardUncovered() {
 		int cont = 0;
+		List<Character> cardsUsed = new ArrayList<Character>();
 		while (cont < deck.getCards().size()) {
-			Character card = nextCardPair();
+			Character card = null;;
+			do {
+				card = nextCardPair(cardsUsed);
+			} while(card == null);
+			cardsUsed.add(card);
 			for (int i = 0; i < 2; i++) {
 				boolean isPutCard = shuffleCardOntheBoardUncovered(Utils.newRandomValue(10), card);
 				if (isPutCard == false) {
@@ -88,8 +94,9 @@ public class Board {
 		}
 	}
 
-	private Character nextCardPair() {
+	private Character nextCardPair(List<Character> cardsToRemove) {
 		List<Character> cards = deck.getCards();
+		cards.removeAll(cardsToRemove);
 		return searchItemFree(cards, 0);
 	}
 

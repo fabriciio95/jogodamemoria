@@ -42,6 +42,7 @@ public class Game {
 					UI.message(e.getMessage());
 					continue;
 				}
+				
 				if (option == 1) {
 					String namePlayer = UI.getString("Qual o nome do jogador: ");
 					Player player = new Player(namePlayer.toUpperCase());
