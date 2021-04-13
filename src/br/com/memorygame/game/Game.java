@@ -98,7 +98,7 @@ public class Game {
 								UI.newLine();
 								break;
 							} else {
-								UI.message("Você ainda pode errar " + attempts + " vez(es)");
+								UI.message("Você ainda pode errar " + (attempts - errors) + " vez(es)");
 								UI.newLine();
 								board.printBoardCovered();
 							}
